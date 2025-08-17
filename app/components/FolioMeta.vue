@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import type { ContentEnCollectionItem, ContentFrCollectionItem } from '@nuxt/content'
 
-useScriptPlausibleAnalytics({
-  domain: 'canvas.hrcd.fr',
-  scriptInput: {
-    src: 'https://analytics.hrcd.fr/js/script.js',
-  },
-})
-
 const { page, isWriting } = defineProps<{
   page: ContentEnCollectionItem | ContentFrCollectionItem
   isWriting: boolean
@@ -23,7 +16,9 @@ const pageSEO = computed(() => ({
 
 const getTitleTemplate = (title: string | undefined) => {
   if (route.path === '/') return title || `${seo.title}`
-  if (isWriting) return title
+  if (isWriting) {
+    return title
+  }
   return `${title} | ${seo.title}`
 }
 
